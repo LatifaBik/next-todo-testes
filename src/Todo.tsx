@@ -1,15 +1,15 @@
 "use client";
 
-import "./index.css"
+import "./index.css";
 
 import { useEffect, useState, type FC } from "react";
 
-import TaskCounter from './components/TaskCounter';
-import TaskForm from './components/TaskForm';
-import TaskList from './components/TaskList';
+import TaskCounter from './app/components/TaskCounter';
+import TaskForm from './app/components/TaskForm';
+import TaskList from './app/components/TaskList';
 import type { Task } from "./types";
 
-const Todo: FC = () => {
+const Todo = () => {
   const [items, setItems] = useState<Task[]>([]);
 
   useEffect(() => {
@@ -28,19 +28,22 @@ const Todo: FC = () => {
       <h1 className="app__title">My ToDo</h1>
       <TaskCounter items={items} />
       <TaskForm onCreateItem={async (text) => {
-        const newItem = {
-          label: text,
-          completed: false,
-        };
+  const newItem: Task = {
+    label: text,
+    completed: false,
+  };
 
-        await fetch('/api/tasks', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(newItem),
-        });
+    await fetch("/api/tasks", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newItem),
+    });
 
-        setItems([...items, newItem]);
-      }} />
+    setItems([...items, newItem]);
+  }}
+/>
+
+      
       <TaskList
         items={items}
         onToggleItem={(index, completed) => {
@@ -54,6 +57,7 @@ const Todo: FC = () => {
       />
     </main>
   );
+
 }
 
 export default Todo
