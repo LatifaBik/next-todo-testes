@@ -22,7 +22,14 @@ const TaskForm: FC<Props> = ({ onCreateItem}) => {
         value={text}
         onChange={(event) => setText(event.target.value)}
       />
-      <button className="taskForm__submitButton" type="submit">OK</button>
+      <button
+        className="taskForm__submitButton"
+        data-testid="taskForm__submitButton"
+        type="submit"
+      >
+        Add
+      </button>
+
       <p className="taskForm__error"></p>
     </form>
   );
