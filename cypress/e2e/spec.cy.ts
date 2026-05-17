@@ -6,5 +6,8 @@ describe('todo app', () => {
     cy.get('[data-testid=taskForm__submitButton]').click();
 
     cy.get('.taskList').should('contain', 'Learn e2e testing');
+
+    cy.visit('http://localhost:3001');
+    cy.get('.taskList').should('contain', 'Learn e2e testing');
   })
 })
